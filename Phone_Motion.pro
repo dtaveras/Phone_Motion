@@ -14,11 +14,17 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    glwindow.cpp
+    glwindow.cpp \
+    leaplistener.cpp \
+    leapcontroller.cpp
 
 HEADERS  += mainwindow.h \
-    glwindow.h
+    glwindow.h \
+    leaplistener.h \
+    leapcontroller.h
 
 FORMS    += mainwindow.ui
 
-LIBS += -lglut
+QMAKE_CXXFLAGS += -I"$$_PRO_FILE_PWD_/include"
+
+LIBS += -lglut "/Users/delvistaveras/Desktop/Build_18/Phone_Motion/lib/libLeap.dylib"

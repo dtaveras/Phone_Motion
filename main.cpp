@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "glwindow.h"
+#include "leapcontroller.h"
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QHBoxLayout>
@@ -12,12 +13,17 @@
 #define W_SC 1.0
 #define H_SC 0.88
 
+
 int main(int argc, char *argv[])
 {    
     glutInit(&argc, argv);
-    QApplication a(argc, argv);
+    QApplication app(argc, argv);
+    QCoreApplication* qapp = QApplication::instance();
     QDesktopWidget dw;
     QWidget* window = new QWidget;
+
+    LeapController leapController;
+
     window->setWindowTitle("Phone Motion");
     window->setMinimumSize(QSize(dw.width()*W_SC,dw.height()*H_SC));
 
@@ -48,5 +54,5 @@ int main(int argc, char *argv[])
     windLayout->addWidget(rGLWindow);
     window->setLayout(windLayout);
     window->show();
-    return a.exec();
+    return app.exec();
 }

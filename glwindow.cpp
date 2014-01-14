@@ -2,6 +2,7 @@
 #include <GL/freeglut.h>
 #include <QDebug>
 
+//#define DBG
 GLWindow::GLWindow(QWidget *parent) :
     QGLWidget(parent)
 {
@@ -12,13 +13,19 @@ GLWindow::GLWindow(QWidget *parent) :
 
 void GLWindow::initializeGL()
 {
+#ifdef DBG
   qDebug() << "initializeGL";
+#endif
+
   glClearColor(0.0,0.0,0.0,0.0);
 }
 
 void GLWindow::paintGL()
 {
+#ifdef DBG
   qDebug() << "paintGL";
+#endif
+
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glEnable(GL_DEPTH_TEST);
   angle += 0.1;
@@ -62,7 +69,10 @@ void GLWindow::paintGL()
 
 void GLWindow::resizeGL(int w, int h)
 {
+#ifdef DBG
   qDebug() << "resizeGL";
+#endif
+
   glViewport(0, 0, (GLsizei) w, (GLsizei) h);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();

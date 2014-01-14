@@ -1,0 +1,2 @@
+In order to allow QT to successfully create the app I ended have to set the @loaderpath using the code below
+install_name_tool -change @loader_path/libLeap.dylib ../lib/libLeap.dylib Sample
