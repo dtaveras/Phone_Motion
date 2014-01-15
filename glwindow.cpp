@@ -2,7 +2,7 @@
 #include <GL/freeglut.h>
 #include <QDebug>
 
-//#define DBG
+#define DBG
 GLWindow::GLWindow(QWidget *parent) :
     QGLWidget(parent)
 {
