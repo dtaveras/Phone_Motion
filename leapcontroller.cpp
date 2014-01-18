@@ -7,6 +7,13 @@ LeapController::LeapController()
   this->leapController->addListener(*this->leapListener);
 }
 
+LeapController::LeapController(GLWindow* glWindow)
+{
+    this->leapController = new Leap::Controller();
+    this->leapListener = new LeapListener(glWindow);
+    this->leapController->addListener(*this->leapListener);
+}
+
 LeapController::~LeapController()
 {
   this->leapController->removeListener(*this->leapListener);

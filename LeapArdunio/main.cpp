@@ -25,7 +25,7 @@ int main()
 {
   FILE* ardOutput;
   char c;
-  ardOutput = fopen("/dev/cu.usbmodem641", "w");
+  ardOutput = fopen("/dev/cu.usbmodem411", "w");
   if(ardOutput == NULL)
     perror("Error Ardunio not Connected");
   else

@@ -5,6 +5,7 @@
 #include <QDesktopWidget>
 #include <QHBoxLayout>
 #include <QBoxLayout>
+#include <QLabel>
 #include <QDebug>
 #include <QFrame>
 #include <QMenuBar>
@@ -16,6 +17,10 @@
 #define W_SC 1.0
 #define H_SC 0.88
 
+#define BACKGROUND_GRAY 353439
+#define WIDGET_GRAY 404143
+#define BACKGROUND_PURPLE 474A6B
+#define WIDGET_PURPLE 2B2E3F
 
 int main(int argc, char *argv[])
 {    
@@ -24,23 +29,26 @@ int main(int argc, char *argv[])
     QDesktopWidget dw;
     QWidget* window = new QWidget;
 
-    LeapController leapController;
 
     window->setWindowTitle("Phone Motion");
     window->setMinimumSize(QSize(dw.width()*W_SC,dw.height()*H_SC));
-    window->setStyleSheet("background-color: #353439");
+    window->setStyleSheet("background-color: #2B2E3F");
 
     QFrame* lFrame = new QFrame;
-    GLWindow* rGLWindow = new GLWindow;
+    GLWindow* rGLWindow = new GLWindow(window);
+    rGLWindow->setFocusPolicy(Qt::StrongFocus);
+    rGLWindow->grabKeyboard();
+    LeapController leapController(rGLWindow);
+
     lFrame->setMinimumWidth(150);
-    lFrame->setStyleSheet("background-color: #353439");
+    lFrame->setStyleSheet("background-color: #2B2E3F");
     rGLWindow->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
 
     QHBoxLayout* windLayout = new QHBoxLayout;
     QVBoxLayout* mainLayout = new QVBoxLayout;
     QBoxLayout* sideLayout = new QBoxLayout(QBoxLayout::TopToBottom);
 
-    QString widgetStyle = "background-color: #404143; \
+    QString widgetStyle = "background-color: rgba(70,75,107,230); \
                      border-top-left-radius: 10px;\
                      border-top-right-radius: 10px;\
                      border-bottom-left-radius: 10px;\
@@ -75,14 +83,25 @@ int main(int argc, char *argv[])
     windLayout->setMenuBar(menuBar);
 
     QFrame* statusBar = new QFrame;
-    statusBar->setStyleSheet("background-color: #404143; border-style: outset;\
+    statusBar->setStyleSheet("background-color: #474A6B; border-style: outset;\
                              border-top-left-radius: 5px;\
                              border-top-right-radius: 5px;");
     statusBar->setMaximumHeight(22);
+    QHBoxLayout* barLayout = new QHBoxLayout();
+    QLabel* nameLabel = new QLabel(statusBar);
+
+    nameLabel->setStyleSheet("font-size: 12px; font-weight: bold; color : white;qproperty-alignment: AlignCenter; ");
+    nameLabel->setText("Phone Motion By Delvis Taveras Scott Ross");
+    nameLabel->setMaximumHeight(22);
+
+    barLayout->setMargin(0);
+    barLayout->setSpacing(0);
+    barLayout->addWidget(nameLabel);
+    statusBar->setLayout(barLayout);
 
     //Change layout spacing to have no margins
     windLayout->setSpacing(5);
-    windLayout->setContentsMargins(5,10,10,10);
+    windLayout->setContentsMargins(5,10,10,0);
 
     mainLayout->setSpacing(0);
     mainLayout->setMargin(0);

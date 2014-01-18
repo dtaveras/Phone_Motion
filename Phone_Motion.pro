@@ -16,12 +16,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     glwindow.cpp \
     leaplistener.cpp \
-    leapcontroller.cpp
+    leapcontroller.cpp \
+    mesh.cpp
 
 HEADERS  += mainwindow.h \
     glwindow.h \
     leaplistener.h \
-    leapcontroller.h
+    leapcontroller.h \
+    mesh.h
 
 FORMS    += mainwindow.ui
 

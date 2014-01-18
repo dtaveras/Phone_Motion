@@ -2,10 +2,12 @@
 #define LEAPCONTROLLER_H
 #include "Leap.h"
 #include "leaplistener.h"
+#include "glwindow.h"
 
 class LeapController
 {
 public:
+    LeapController(GLWindow* glWindow);
     LeapController();
     ~LeapController();
  private:
